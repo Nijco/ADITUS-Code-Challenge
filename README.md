@@ -2,74 +2,43 @@
 
 ## Voraussetzungen
 
-- .NET8-SDK
+- .NET 8 SDK
 - VSCode oder Visual Studio
+- Node.js
 
-## Bearbeitungshinweis
+## 🎯 Aufgabenstellung wählen
 
-* Git-Repository clonen
-* Repository in VSCode oder Visual Studio öffnen
-* Aufgaben bearbeiten
-* Nach Bearbeitung die Lösung in einem eigenen Git-Repository bereitstellen
-* Einen Link zum Repository per E-Mail dem Ansprechpartner schicken
+Wähle die Aufgabenstellung für deine Position:
 
-## Kontext
+- 👉 [Frontend-Entwickler (Nuxt)](./TASK_FRONTEND.md)
+- 👉 [Full-Stack-Entwickler (C#/.NET + Nuxt)](./TASK_FULLSTACK.md)
 
-Das Projekt beeinhaltet eine REST-HTTP-Schnittstelle, die Informationen über Veranstaltungen bereitstellt.
-Es gibt zwei Endpunkte:
+## 📚 API-Übersicht
 
-- GET /events/ - Liefert eine Liste an Veranstaltungen.
-- GET /events/:id - Liefert die Informationen einer bestimmten Veranstaltung.
+Die REST-API bietet folgende Basis-Endpunkte:
 
-Zu einer jeden Veranstaltung liegen folgende Informationen vor:
+- `GET /api/events/` - Liefert eine Liste an Veranstaltungen
+- `GET /api/events/{id}` - Liefert Informationen einer Veranstaltung
 
-Information | Beschreibung
------------ | ------------ 
-ID          | Kennung der Veranstaltung  
-Year        | Jahr der Veranstaltung 
-Name        | Name der Veranstaltung 
-StartDate   | Startdatum der Veranstaltung 
-EndDate     | Enddatum der Veranstaltung 
-Type        | Typ der Veranstaltung (mögliche Werte: OnSite, Online, Hybrid) 
+### Veranstaltungs-Datenstruktur
 
-## Aufgabenstellung
+| Information | Beschreibung |
+| ----------- | ------------ |
+| ID          | Kennung der Veranstaltung (GUID) |
+| Year        | Jahr der Veranstaltung |
+| Name        | Name der Veranstaltung |
+| StartDate   | Startdatum der Veranstaltung |
+| EndDate     | Enddatum der Veranstaltung |
+| Type        | Typ der Veranstaltung (OnSite, Online, Hybrid) |
 
-### 1. Veranstaltungs-Statistiken
+---
 
-Der bestehende Endpunkt zum Abrufen einer Veranstaltung soll um die Ermittlung und anschließender Ausgabe von Statistiken erweitert werden. 
+## 📋 Abgabe
 
-Zur Ermittlung der Statistiken einer Veranstaltung müssen Datenquellen angebunden werden. Diese Datenquellen können per HTTP-Schnittstelle angesprochen werden.
-Je nach Typ der Veranstaltung können folgende URLs angefragt werden, um die Statistiken abzurufen:
+Nach Bearbeitung der Aufgabenstellung:
+- Push der Lösung in ein eigenes Git-Repository
+- Link zum Repository per E-Mail an den Ansprechpartner senden
 
-Datenquelle                             | URL
---------------------------------------- | ------------------------ 
-Statistiken für Online-Veranstaltungen  | GET https://codechallenge-statistics.azurewebsites.net/api/online-statistics/:eventId
-Statistiken für Vor-Ort-Veranstaltungen | GET https://codechallenge-statistics.azurewebsites.net/api/onsite-statistics/:eventId
+---
 
-Für den Fall, dass eine Veranstaltung vom Typ "Hybrid" ist, müssen die Statistiken von beiden Datenquellen abgerufen werden.
-
-*Hinweis: Damit die Datenquellen funktionieren, muss als Event-ID eine gültige ID im GUID-Format übermittelt werden. (Beispiel: https://codechallenge-statistics.azurewebsites.net/api/online-statistics/b4b9236b-69bc-4ce3-b923-592786e9c881 bzw. https://codechallenge-statistics.azurewebsites.net/api/onsite-statistics/b4b9236b-69bc-4ce3-b923-592786e9c881)*
-
-### 2. Hardware-Reservierung einer Veranstaltung
-
-Die Schnittstelle soll um einen Prozess zur Reservierung von Hardware zur Zutrittskontrolle erweitert werden.
-Für eine Hardware-Reservierung muss mitgeteilt werden, welche Hardware-Komponenten in welcher Menge für die Veranstaltung benötigt werden.
-Die Reservierung der Hardware ist nur möglich, wenn die Reservierung mindestens 4 Woche vor Veranstaltungsdurchführung getätigt wird, die gewünschte Hardware in ausreichender Menge verfügbar ist und noch keine Hardware für die gewählte Veranstaltung reserviert wurde. Nachdem die Hardware-Reservierung angefragt wurde, steht noch eine Freigabe der Reservierung aus.
-
-Die Schnittstellen-Konsumenten sollen jederzeit den Status des aktuellen Prozesses und die reservierten Hardware-Komponenten mitsamt der reservierten Menge abfragen können.
-
-Folgende Hardware-Komponenten stehen zur Verfügung:
-
-* Drehsperre
-* Funkhandscanner
-* Mobiles Scan-Terminal
-
-*Hinweis: Die Implementierung der Hardware-Reservierung muss nur mock-artig / dummyhaft geschehen.*
-
-### 3. Dokumentation der API-Endpunkte (optional)
-
-Neben der implementierten Schnittstelle wird auch eine Dokumentation dieser Schnittstelle benötigt.
-Diese soll den potenziellen Konsumenten der Schnittstellen einen Überblick über alle verfügbaren Endpunkte geben.
-Zu jedem dieser Endpunkte soll dokumentiert sein, welche Daten der Endpunkt vom Konsumenten entgegennimmt und welche Daten von der Schnittstelle übertragen werden.
-
-Wie die Dokumentation der Schnittstelle erfolgt, kann selbst festgelegt werden.
+**Viel Erfolg! 🎉**
