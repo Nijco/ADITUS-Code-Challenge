@@ -1,97 +1,97 @@
-﻿# 💻 Frontend-Entwickler Code-Challenge
+﻿# 💻 Frontend Developer Code-Challenge
 
-**Zielgruppe:** Nuxt-Entwickler  
-**Technologie:** Nuxt 4, TypeScript  
-**Geschätzter Aufwand:** 6-12 Stunden
-
----
-
-## 📋 Vorbereitungen
-
-### Backend-API lokal ausführen
-
-Die Backend-API wird benötigt, um die Frontend-Anwendung zu testen. Folge diesen Schritten:
-
-1. **Öffne das Projekt in VS Code oder Visual Studio**
-   - Navigiere zum Verzeichnis `src/`
-   - Öffne die Datei `ADITUS.CodeChallenge.sln`
-
-2. **Starte die API**
-   - In VS Code: Öffne ein Terminal und führe aus: `dotnet run` im Verzeichnis `src/ADITUS.CodeChallenge.API/`
-   - In Visual Studio: Wähle das Projekt `ADITUS.CodeChallenge.API` aus und starte es (F5 oder Ctrl+F5)
-
-3. **Verifiziere, dass die API läuft**
-   - Öffne deinen Browser und navigiere zu `https://localhost:5001/api/events/`
-   - Du solltest eine JSON-Antwort mit einer Liste von Veranstaltungen sehen
-
-4. **Notiere die API-URL**
-   - Die lokale API läuft unter `https://localhost:5001`
-   - Nutze diese URL später in deiner Nuxt-Anwendung für die API-Konfiguration
+**Target Audience:** Nuxt Developers  
+**Technology:** Nuxt 4, TypeScript  
+**Estimated Effort:** 6-12 hours
 
 ---
 
-## 📋 Aufgabenübersicht
+## 📋 Preparation
 
-Du wirst ein **Veranstaltungsverwaltungs-Dashboard mit Nuxt 4** implementieren. Die Backend-API für Veranstaltungen ist bereits vorhanden. Du wirst diese mit modernem Frontend umsetzen und zusätzliche externe Datenquellen integrieren.
+### Running the Backend API Locally
+
+The backend API is required to test the frontend application. Follow these steps:
+
+1. **Open the project in VS Code or Visual Studio**
+   - Navigate to the `src/` directory
+   - Open the file `ADITUS.CodeChallenge.sln`
+
+2. **Start the API**
+   - In VS Code: Open a terminal and run: `dotnet run` in the `src/ADITUS.CodeChallenge.API/` directory
+   - In Visual Studio: Select the `ADITUS.CodeChallenge.API` project and run it (F5 or Ctrl+F5)
+
+3. **Verify that the API is running**
+   - Open your browser and navigate to `https://localhost:5001/api/events/`
+   - You should see a JSON response with a list of events
+
+4. **Note the API URL**
+   - The local API runs at `https://localhost:5001`
+   - Use this URL later in your Nuxt application for API configuration
 
 ---
 
-## 📝 Aufgabe 1: Nuxt 4 Anwendung einrichten
+## 📋 Task Overview
 
-Lege eine neue Nuxt 4 Anwendung an und konfiguriere sie für die Kommunikation mit der Backend-API.
+You will implement an **Event Management Dashboard with Nuxt 4**. The backend API for events is already available. You will implement this with a modern frontend and integrate additional external data sources.
 
 ---
 
-## 📝 Aufgabe 2: Veranstaltungsliste
+## 📝 Task 1: Set Up Nuxt 4 Application
 
-Implementiere eine Seite, die alle Veranstaltungen auflistet. Nutze die API: `GET /api/events/`
+Create a new Nuxt 4 application and configure it for communication with the backend API.
 
-Folgende Informationen sollen angezeigt werden:
+---
+
+## 📝 Task 2: Event List
+
+Implement a page that lists all events. Use the API: `GET /api/events/`
+
+The following information should be displayed:
 - Name
-- Jahr
-- Start- und Enddatum
-- Typ (OnSite, Online, Hybrid)
+- Year
+- Start and end date
+- Type (OnSite, Online, Hybrid)
 
-Jede Veranstaltung soll anklickbar zur Detailansicht führen. Implementiere zudem eine Filtermöglichkeit nach Veranstaltungstyp.
-
----
-
-## 📝 Aufgabe 3: Veranstaltungs-Detailansicht
-
-Implementiere eine Detailseite für eine einzelne Veranstaltung. Nutze die API: `GET /api/events/{id}`
-
-Zeige alle verfügbaren Informationen an. Implementiere eine Navigation zurück zur Liste.
+Each event should be clickable to navigate to the detail view. Also implement a filter by event type.
 
 ---
 
-## 📝 Aufgabe 4: Statistiken von externen Datenquellen
+## 📝 Task 3: Event Detail View
 
-Integriere Statistiken aus externen Datenquellen direkt im Frontend. Die folgenden Endpunkte stellen Statistiken bereit:
+Implement a detail page for a single event. Use the API: `GET /api/events/{id}`
 
-- **Online-Statistiken:** `https://codechallenge-statistics.azurewebsites.net/api/online-statistics/:eventId`
-- **OnSite-Statistiken:** `https://codechallenge-statistics.azurewebsites.net/api/onsite-statistics/:eventId`
-
-*Hinweis: Diese Endpunkte benötigen eine gültige GUID als Event-ID.*
-
-Erweitere die Detailansicht um die Darstellung von Statistiken basierend auf dem Veranstaltungstyp:
-- Für **Online-Events:** Rufe Online-Statistiken ab und zeige diese an
-- Für **OnSite-Events:** Rufe OnSite-Statistiken ab und zeige diese an
-- Für **Hybrid-Events:** Rufe beide Statistiken ab und kombiniere diese sinnvoll in der Anzeige
+Display all available information. Implement navigation back to the list.
 
 ---
 
-## 📝 Aufgabe 5: Verwaltung von Veranstaltungen (Mock-Daten)
+## 📝 Task 4: Statistics from External Data Sources
 
-Implementiere eine Funktionalität zur Erstellung und Bearbeitung von Veranstaltungen. Da diese Funktionalität nicht über die API verfügbar ist, arbeite mit lokalen Mock-Daten.
+Integrate statistics from external data sources directly in the frontend. The following endpoints provide statistics:
 
-**Funktionalitäten:**
-- Formular / Prozess zur Erstellung einer neuen Veranstaltung
-- Bearbeitung einer bestehenden Veranstaltung
-- Löschung einer Veranstaltung
+- **Online Statistics:** `https://codechallenge-statistics.azurewebsites.net/api/online-statistics/:eventId`
+- **OnSite Statistics:** `https://codechallenge-statistics.azurewebsites.net/api/onsite-statistics/:eventId`
 
-**Persistierung:**
-- Die lokal erstellten und bearbeiteten Veranstaltungen sollen im lokalen Speicher des Browsers (z.B. localStorage oder Pinia Store) persistiert werden
+*Note: These endpoints require a valid GUID as the event ID.*
+
+Extend the detail view with statistics display based on event type:
+- For **Online Events:** Fetch and display online statistics
+- For **OnSite Events:** Fetch and display onsite statistics
+- For **Hybrid Events:** Fetch both statistics and combine them meaningfully in the display
 
 ---
 
-**Viel Erfolg! 🚀**
+## 📝 Task 5: Event Management (Mock Data)
+
+Implement functionality for creating and editing events. Since this functionality is not available via the API, work with local mock data.
+
+**Features:**
+- Form / process for creating a new event
+- Editing an existing event
+- Deleting an event
+
+**Persistence:**
+- Locally created and edited events should be persisted in the browser's local storage (e.g., localStorage or Pinia store)
+
+---
+
+**Good luck! 🚀**

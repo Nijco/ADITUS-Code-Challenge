@@ -1,44 +1,44 @@
 # ADITUS Code-Challenge
 
-## Voraussetzungen
+## Prerequisites
 
 - .NET 8 SDK
-- VSCode oder Visual Studio
+- VSCode or Visual Studio
 - Node.js
 
-## 🎯 Aufgabenstellung wählen
+## 🎯 Choose Your Task
 
-Wähle die Aufgabenstellung für deine Position:
+Select the task description for your position:
 
-- 👉 [Frontend-Entwickler (Nuxt)](./TASK_FRONTEND.md)
-- 👉 [Full-Stack-Entwickler (C#/.NET + Nuxt)](./TASK_FULLSTACK.md)
+- 👉 [Frontend Developer (Nuxt)](./TASK_FRONTEND.md)
+- 👉 [Full-Stack Developer (C#/.NET + Nuxt)](./TASK_FULLSTACK.md)
 
-## 📚 API-Übersicht
+## 📚 API Overview
 
-Die REST-API bietet folgende Basis-Endpunkte:
+The REST-API provides the following base endpoints:
 
-- `GET /api/events/` - Liefert eine Liste an Veranstaltungen
-- `GET /api/events/{id}` - Liefert Informationen einer Veranstaltung
+- `GET /api/events/` - Returns a list of events
+- `GET /api/events/{id}` - Returns information about an event
 
-### Veranstaltungs-Datenstruktur
+### Event Data Structure
 
-| Information | Beschreibung |
+| Information | Description |
 | ----------- | ------------ |
-| ID          | Kennung der Veranstaltung (GUID) |
-| Year        | Jahr der Veranstaltung |
-| Name        | Name der Veranstaltung |
-| StartDate   | Startdatum der Veranstaltung |
-| EndDate     | Enddatum der Veranstaltung |
-| Type        | Typ der Veranstaltung (OnSite, Online, Hybrid) |
+| ID          | Event identifier (GUID) |
+| Year        | Year of the event |
+| Name        | Name of the event |
+| StartDate   | Start date of the event |
+| EndDate     | End date of the event |
+| Type        | Type of event (OnSite, Online, Hybrid) |
 
 ---
 
-## 📋 Abgabe
+## 📋 Submission
 
-Nach Bearbeitung der Aufgabenstellung:
-- Push der Lösung in ein eigenes Git-Repository
-- Link zum Repository per E-Mail an den Ansprechpartner senden
+After completing the task:
+- Push your solution to your own Git repository
+- Send the repository link to your contact person via email
 
 ---
 
-**Viel Erfolg! 🎉**
+**Good luck! 🎉**
