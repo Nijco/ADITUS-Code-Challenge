@@ -1,91 +1,91 @@
-﻿# 💻 Full-Stack-Entwickler Code-Challenge
+﻿# 💻 Full-Stack Developer Code-Challenge
 
-**Zielgruppe:** C#/.NET + Nuxt-Entwickler  
-**Technologie:** C# .NET 8, Nuxt 4, TypeScript  
-**Geschätzter Aufwand:** 6-12 Stunden
-
----
-
-## 📋 Aufgabenübersicht
-
-Du wirst die bestehende **REST-API um neue Funktionalitäten erweitern** und gleichzeitig ein modernes **Frontend-Dashboard mit Nuxt 4** entwickeln.
-
-**Backend:** Das Projekt befindet sich bereits im Repository unter `src/`. Öffne die Solution `ADITUS.CodeChallenge.sln`
-
-**Frontend:** Eine neue Nuxt 4-Anwendung soll von dir angelegt werden.
+**Target Audience:** C#/.NET + Nuxt Developers  
+**Technology:** C# .NET 8, Nuxt 4, TypeScript  
+**Estimated Effort:** 6-12 hours
 
 ---
 
-## 🔧 BACKEND-AUFGABEN
+## 📋 Task Overview
+
+You will **extend the existing REST-API with new functionality** and simultaneously **develop a modern Frontend Dashboard with Nuxt 4**.
+
+**Backend:** The project is already located in the repository under `src/`. Open the solution file `ADITUS.CodeChallenge.sln`
+
+**Frontend:** A new Nuxt 4 application should be created by you.
 
 ---
 
-## 📝 Aufgabe 1: API-Endpunkte - Statistiken
-
-Erweitere die API um Endpunkte für Veranstaltungs-Statistiken. Diese Endpunkte sollen Statistiken von externen Datenquellen abrufen:
-- **Online-Statistiken:** `https://codechallenge-statistics.azurewebsites.net/api/online-statistics/:eventId`
-- **OnSite-Statistiken:** `https://codechallenge-statistics.azurewebsites.net/api/onsite-statistics/:eventId`
-
-*Hinweis: Diese Endpunkte benötigen eine gültige GUID als Event-ID.*
-
-Die abzurufenden Statistiken sind abhängig vom Veranstaltungstyp:
-- Für **Online-Events:** Rufe Online-Statistiken ab
-- Für **OnSite-Events:** Rufe OnSite-Statistiken ab
-- Für **Hybrid-Events:** Rufe beide Statistiken ab
+## 🔧 BACKEND TASKS
 
 ---
 
-## 📝 Aufgabe 2: API-Endpunkte - Hardware-Reservierung
+## 📝 Task 1: API Endpoints - Statistics
 
-Erweitere die API um Endpunkte für Hardware-Reservierungen. Verfügbare Hardware-Komponenten:
-- Drehsperre
-- Funkhandscanner
-- Mobiles Scan-Terminal
+Extend the API with endpoints for event statistics. These endpoints should fetch statistics from external data sources:
+- **Online Statistics:** `https://codechallenge-statistics.azurewebsites.net/api/online-statistics/:eventId`
+- **OnSite Statistics:** `https://codechallenge-statistics.azurewebsites.net/api/onsite-statistics/:eventId`
 
-**Funktionalitäten:**
-- Eine neue Hardware-Reservierung für ein Event anlegen
-- Eine bestehende Reservierung für ein Event abrufen
-- Eine bestehende Reservierung stornieren/löschen
+*Note: These endpoints require a valid GUID as the event ID.*
 
-**Geschäftsregeln:**
-- Reservierungen sind nur möglich, wenn das Event mindestens 4 Wochen in der Zukunft liegt
-- Pro Event darf maximal eine aktive Reservierung bestehen
-- Keine Reservierungen für vergangene Events
-
-Die Datenpersistierung kann in-memory erfolgen.
+The statistics to be fetched depend on the event type:
+- For **Online Events:** Fetch online statistics
+- For **OnSite Events:** Fetch onsite statistics
+- For **Hybrid Events:** Fetch both statistics
 
 ---
 
-## 📝 Aufgabe 3: API-Dokumentation
+## 📝 Task 2: API Endpoints - Hardware Reservation
 
-Stelle eine vollständige Dokumentation der API-Endpunkte bereit.
+Extend the API with endpoints for hardware reservations. Available hardware components:
+- Turnstile
+- Handheld scanner
+- Mobile scan terminal
 
----
+**Features:**
+- Create a new hardware reservation for an event
+- Retrieve an existing reservation for an event
+- Cancel/delete an existing reservation
 
-## 🎨 FRONTEND-AUFGABEN
+**Business Rules:**
+- Reservations are only possible if the event is at least 4 weeks in the future
+- Only one active reservation per event is allowed
+- No reservations for past events
 
----
-
-## 📝 Aufgabe 4: Nuxt 4 Anwendung einrichten
-
-Lege eine neue Nuxt 4 Anwendung an und konfiguriere sie für die Kommunikation mit der Backend-API.
-
----
-
-## 📝 Aufgabe 5: Frontend - Veranstaltungsverwaltungs-Dashboard
-
-Implementiere ein Dashboard mit folgenden Funktionen:
-
-**Seite: Veranstaltungsliste**
-- Liste aller Veranstaltungen
-- Zeige Name, Jahr, Datum und Typ
-- Filtermöglichkeit nach Veranstaltungstyp
-- Anklickbare Einträge führen zur Detailansicht
-
-**Seite: Veranstaltungsdetails**
-- Alle Informationen zur Veranstaltung anzeigen
-- Navigation zurück zur Liste
+Data persistence can be done in-memory.
 
 ---
 
-**Viel Erfolg! 🚀**
+## 📝 Task 3: API Documentation
+
+Provide complete documentation of the API endpoints.
+
+---
+
+## 🎨 FRONTEND TASKS
+
+---
+
+## 📝 Task 4: Set Up Nuxt 4 Application
+
+Create a new Nuxt 4 application and configure it for communication with the backend API.
+
+---
+
+## 📝 Task 5: Frontend - Event Management Dashboard
+
+Implement a dashboard with the following functions:
+
+**Page: Event List**
+- List all events
+- Show name, year, date and type
+- Filter option by event type
+- Clickable entries lead to the detail view
+
+**Page: Event Details**
+- Display all information about the event
+- Navigation back to the list
+
+---
+
+**Good luck! 🚀**
