@@ -23,7 +23,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="event in filteredEvents" :key="event.id">
+                <tr class="clickable" v-for="event in filteredEvents" :key="event.id" @click="openEvent(event.id)">
                     <td>{{ event.name }}</td>
                     <td>{{ event.year }}</td>
                     <td>{{ formatDate(event.startDate!) }}</td>
@@ -37,6 +37,7 @@
 <script setup lang="ts">
 import { useApi as useApi } from '~/composeable/useApi';
 import { EventTypeEnum, type EventDto } from '~/models/EventDto';
+import { } from '~/models/EventDto';
 
 let eventsLoading = ref(false);
 let eventsList = ref<EventDto[]>([]);
@@ -59,18 +60,8 @@ async function fetchEvents() {
     }
 }
 
-function formatDate(dateString: string, locale: string = 'de-DE'): string {
-    let date: Date;
-    if (typeof (dateString) !== 'string') {
-        return '';
-    }
-    date = new Date(dateString);
-
-    return new Intl.DateTimeFormat(locale, {
-        year: 'numeric',
-        month: 'short',
-        day: 'numeric',
-    }).format(date);
+function openEvent(id: string) {
+    navigateTo(`/eventdetails?id=${id}`)
 }
 
 const selectedEventTypeFilter = ref<EventTypeEnum | ''>('')
@@ -99,6 +90,8 @@ const filteredEvents = computed(() => {
     return eventsList.value
         .filter(e => e.type == selectedEventTypeFilter.value);
 })
+
+
 </script>
 
 <style lang="scss" scoped>
@@ -111,6 +104,10 @@ const filteredEvents = computed(() => {
     table {
         width: 100%;
         border-collapse: collapse;
+
+        .clickable {
+            cursor: pointer;
+        }
 
         th {
             position: sticky;
