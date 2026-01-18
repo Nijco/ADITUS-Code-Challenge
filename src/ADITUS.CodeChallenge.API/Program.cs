@@ -19,7 +19,16 @@ builder.Services.AddDbContext<HardwareReservationDBContext>(options =>
 builder.Services.AddSingleton<IEventService, EventService>();
 builder.Services.AddScoped<IHardwareReservationService, HardwareReservationService>();
 
+builder.Services.AddEndpointsApiExplorer();
+builder.Services.AddSwaggerGen();
+
 var app = builder.Build();
+
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
 
 app.UseHttpsRedirection();
 
