@@ -1,7 +1,8 @@
 <template>
     <h2>Event List</h2>
     <div class="table-wrapper">
-        <table>
+        <p v-if="eventsLoading">Events Loading ...</p>
+        <table v-if="eventsLoading == false">
             <thead>
                 <tr>
                     <th v-for="col in columns" :key="col">
@@ -10,7 +11,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="event in events" :key="event.id">
+                <tr v-for="event in eventsList" :key="event.id">
                     <td>{{ event.id }}</td>
                     <td>{{ event.name }}</td>
                     <td>{{ event.StartDate }}</td>
@@ -22,18 +23,29 @@
 </template>
 
 <script setup lang="ts">
+import { useApi as useApi } from '~/composeable/useApi';
 import { EventTypeEnum, type EventDto } from '~/models/EventDto';
 
-// Minimal data generation for demo purposes
-const columns = ['Name', 'Year', 'Date', 'Type']
-const events: EventDto[] = Array.from({ length: 50 }, (_, i) => ({
-    id: `${i + 1}`,
-    name: `event ${i + 1}`,
-    year: i + 2000,
-    type: EventTypeEnum.Hybrid,
-    EndDate: (new Date).toISOString(),
-    StartDate: (new Date).toISOString(),
-}))
+let eventsLoading = ref(false);
+let eventsList = ref<EventDto[]>([]);
+
+const columns = ['Name', 'Year', 'Date', 'Type'];
+
+onMounted(() => {
+    fetchEvents();
+})
+
+async function fetchEvents() {
+    eventsLoading.value = true;
+    try {
+        const events = await useApi<EventDto[]>('/events', {
+            method: 'GET',
+        });
+        eventsList.value = events;
+    } finally {
+        eventsLoading.value = false;
+    }
+}
 </script>
 
 <style lang="scss" scoped>

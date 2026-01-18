@@ -11,6 +11,16 @@ builder.Services.AddControllers().AddJsonOptions(x =>
     x.JsonSerializerOptions.Converters.Add(new JsonStringEnumConverter());
 });
 
+
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("AllowNuxt", policy =>
+        policy.WithOrigins("http://localhost:3000")
+              .AllowAnyHeader()
+              .AllowAnyMethod()
+              .AllowCredentials());
+});
+
 RegisterExternalEventSourceInjections(builder);
 
 builder.Services.AddDbContext<HardwareReservationDBContext>(options =>
@@ -23,7 +33,7 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 var app = builder.Build();
-
+app.UseCors("AllowNuxt");
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
