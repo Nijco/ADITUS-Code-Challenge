@@ -6,11 +6,11 @@ public class ExternalEventStatisticsSource : IExternalEventStatisticsSource
 {
     public record ExternalEventApiConfig(Uri BaseUrl, string OnlineSubRoute, string OnSiteSubRoute);
 
-    public HttpClient _externalApiClient;
+    public HttpClient _ExternalEventStatisticsApiClient;
     public ExternalEventApiConfig _externalEventApiConfig;
     public ExternalEventStatisticsSource(HttpClient extenalApiClient, ExternalEventApiConfig externalEventApiConfig)
     {
-        _externalApiClient = extenalApiClient;
+        _ExternalEventStatisticsApiClient = extenalApiClient;
         _externalEventApiConfig = externalEventApiConfig;
     }
 
@@ -18,13 +18,13 @@ public class ExternalEventStatisticsSource : IExternalEventStatisticsSource
     public async Task<OnlineEventStatisticsDto?> GetOnlineEvent(Guid id)
     {
         var subRout = _externalEventApiConfig.OnlineSubRoute;
-        var stats = await _externalApiClient.GetFromJsonAsync<OnlineEventStatisticsDto>($"{subRout}/{id}");
+        var stats = await _ExternalEventStatisticsApiClient.GetFromJsonAsync<OnlineEventStatisticsDto>($"{subRout}/{id}");
         return stats;
     }
     public async Task<OnSiteEventStatisticsDto?> GetOnSiteEvent(Guid id)
     {
         var subRout = _externalEventApiConfig.OnSiteSubRoute;
-        var stats = await _externalApiClient.GetFromJsonAsync<OnSiteEventStatisticsDto>($"{subRout}/{id}");
+        var stats = await _ExternalEventStatisticsApiClient.GetFromJsonAsync<OnSiteEventStatisticsDto>($"{subRout}/{id}");
         return stats;
     }
 }

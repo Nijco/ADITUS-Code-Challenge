@@ -11,6 +11,7 @@ namespace ADITUS.CodeChallenge.API.Services
     public EventService(IExternalEventStatisticsSource externalEventSource)
     {
       _externalEventSource = externalEventSource;
+      //I added events to even be able to test the hardwareReservation endpoints
       _events = new List<Event>
       {
         new Event
@@ -56,6 +57,24 @@ namespace ADITUS.CodeChallenge.API.Services
           Name = "ADITUS Code Challenge 2023",
           StartDate = new DateTime(2023, 1, 1),
           EndDate = new DateTime(2023, 1, 23),
+          Type = EventType.OnSite
+        },
+        new Event
+        {
+          Id = Guid.Parse("3a17b294-8716-448c-94db-ebf9bf53f134"),
+          Year = 2028,
+          Name = "ADITUS Code Challenge 2026 a",
+          StartDate = new DateTime(2026, 1, 28),
+          EndDate = new DateTime(2026, 1, 29),
+          Type = EventType.OnSite
+        },
+        new Event
+        {
+          Id = Guid.Parse("3a17b294-8716-448c-94db-ebf9bf53f135"),
+          Year = 2028,
+          Name = "ADITUS Code Challenge 2026 b",
+          StartDate = new DateTime(2026, 4, 28),
+          EndDate = new DateTime(2026, 4, 29),
           Type = EventType.OnSite
         }
       };

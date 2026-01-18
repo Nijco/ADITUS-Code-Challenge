@@ -1,5 +1,7 @@
 using ADITUS.CodeChallenge.API.Domain;
+using ADITUS.CodeChallenge.API.Dtos;
 using ADITUS.CodeChallenge.API.Services;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ADITUS.CodeChallenge.API;
@@ -8,10 +10,12 @@ namespace ADITUS.CodeChallenge.API;
 public class EventsController : ControllerBase
 {
   private readonly IEventService _eventService;
+  private readonly IHardwareReservationService _hardwareReservation;
 
-  public EventsController(IEventService eventService)
+  public EventsController(IEventService eventService, IHardwareReservationService hardwareReservation)
   {
     _eventService = eventService;
+    _hardwareReservation = hardwareReservation;
   }
 
   [HttpGet]
