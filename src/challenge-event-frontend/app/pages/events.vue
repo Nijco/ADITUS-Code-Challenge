@@ -95,7 +95,7 @@ const filteredEvents = computed(() => {
 
 <style lang="scss" scoped>
 .table-wrapper {
-    height: 300px;
+    height: 120px;
     overflow-y: auto;
     border: 1px solid #ddd;
     flex-grow: 1;

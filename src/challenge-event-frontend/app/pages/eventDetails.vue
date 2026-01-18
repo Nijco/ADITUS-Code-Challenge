@@ -4,69 +4,76 @@
         <h2>Event Details - {{ eventData?.name }}</h2>
         <h3>Generell</h3>
         <table>
-            <tr v-if="eventLoading">Event data loading</tr>
-            <tr>
-                <td>Id</td>
-                <td>{{ eventData?.id }}</td>
-            </tr>
-            <tr>
-                <td>Start</td>
-                <td>{{ eventData?.startDate ? formatDate(eventData.startDate, true) : '' }}</td>
-            </tr>
-            <tr>
-                <td>Ende</td>
-                <td>{{ eventData?.endDate ? formatDate(eventData.endDate, true) : '' }}</td>
-            </tr>
-            <tr>
-                <td>Jahr</td>
-                <td>{{ eventData?.year }}</td>
-            </tr>
-            <tr>
-                <td>Event Typ</td>
-                <td>{{ eventData?.type }}</td>
-            </tr>
+
+            <tbody>
+                <tr v-if="eventLoading">Event data loading</tr>
+                <tr>
+                    <td>Id</td>
+                    <td>{{ eventData?.id }}</td>
+                </tr>
+                <tr>
+                    <td>Start</td>
+                    <td>{{ eventData?.startDate ? formatDate(eventData.startDate, true) : '' }}</td>
+                </tr>
+                <tr>
+                    <td>Ende</td>
+                    <td>{{ eventData?.endDate ? formatDate(eventData.endDate, true) : '' }}</td>
+                </tr>
+                <tr>
+                    <td>Jahr</td>
+                    <td>{{ eventData?.year }}</td>
+                </tr>
+                <tr>
+                    <td>Event Typ</td>
+                    <td>{{ eventData?.type }}</td>
+                </tr>
+            </tbody>
         </table>
     </div>
     <h3>Statistik</h3>
     <div v-if="eventStatisticsData?.onSiteEventStatistics">
         <h4>Vorort</h4>
         <table>
-            <tr v-if="eventStatisticsLoading">Event data loading</tr>
-            <tr>
-                <td>Besucherzahl</td>
-                <td>{{ eventStatisticsData?.onSiteEventStatistics.visitorsCount }}</td>
-            </tr>
-            <tr>
-                <td>Aussteleranzahl</td>
-                <td>{{ eventStatisticsData?.onSiteEventStatistics.exhibitorsCount }}</td>
-            </tr>
-            <tr>
-                <td>Anzahl an Ständen</td>
-                <td>{{ eventStatisticsData?.onSiteEventStatistics.boothsCount }}</td>
-            </tr>
+            <tbody>
+                <tr v-if="eventStatisticsLoading">Event data loading</tr>
+                <tr>
+                    <td>Besucherzahl</td>
+                    <td>{{ eventStatisticsData?.onSiteEventStatistics.visitorsCount }}</td>
+                </tr>
+                <tr>
+                    <td>Aussteleranzahl</td>
+                    <td>{{ eventStatisticsData?.onSiteEventStatistics.exhibitorsCount }}</td>
+                </tr>
+                <tr>
+                    <td>Anzahl an Ständen</td>
+                    <td>{{ eventStatisticsData?.onSiteEventStatistics.boothsCount }}</td>
+                </tr>
+            </tbody>
         </table>
     </div>
 
     <div v-if="eventStatisticsData?.onlineEventStatistics">
         <h4>Online</h4>
         <table>
-            <tr v-if="eventStatisticsLoading">Event data loading</tr>
-            <tr>
-                <td>Teilnehmer</td>
-                <td>{{ eventStatisticsData?.onlineEventStatistics.attendees }}</td>
-            </tr>
-            <tr>
-                <td>Versendete Einladungen</td>
-                <td>{{ eventStatisticsData?.onlineEventStatistics.invites }}</td>
-            </tr>
-            <tr>
-                <td>Virtuelle Räume</td>
-                <td>{{ eventStatisticsData?.onlineEventStatistics.virtualRooms }}</td>
-            </tr>
-            <tr>
-                <td>Seitenaufrufe</td>
-                <td>{{ eventStatisticsData?.onlineEventStatistics.visits }}</td>
-            </tr>
+            <tbody>
+                <tr v-if="eventStatisticsLoading">Event data loading</tr>
+                <tr>
+                    <td>Teilnehmer</td>
+                    <td>{{ eventStatisticsData?.onlineEventStatistics.attendees }}</td>
+                </tr>
+                <tr>
+                    <td>Versendete Einladungen</td>
+                    <td>{{ eventStatisticsData?.onlineEventStatistics.invites }}</td>
+                </tr>
+                <tr>
+                    <td>Virtuelle Räume</td>
+                    <td>{{ eventStatisticsData?.onlineEventStatistics.virtualRooms }}</td>
+                </tr>
+                <tr>
+                    <td>Seitenaufrufe</td>
+                    <td>{{ eventStatisticsData?.onlineEventStatistics.visits }}</td>
+                </tr>
+            </tbody>
         </table>
     </div>
 </template>
@@ -121,6 +128,7 @@ async function loadEventDetails(id: string) {
 <style scoped lang="scss">
 table {
     width: 100%;
+    max-width: 600px;
     border-collapse: collapse;
 
     td {
