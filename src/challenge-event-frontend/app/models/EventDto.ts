@@ -3,12 +3,12 @@ export interface EventDto {
     year: number,
     name: string,
     type: EventTypeEnum,
-    StartDate: string | null,
-    EndDate: string | null,
+    startDate: string | null,
+    endDate: string | null,
 }
 
 export enum EventTypeEnum {
-    OnSite = 1,
-    Online = 2,
-    Hybrid = 3,
+    OnSite = "OnSite",
+    Online = "Online",
+    Hybrid = "Hybrid",
 }

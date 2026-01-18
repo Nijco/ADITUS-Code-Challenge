@@ -1,5 +1,17 @@
 <template>
-    <h2>Event List</h2>
+    <div class="header">
+        <h2>Event List</h2>
+        <div class="filter-container">
+            <label for="role-select">Filter by event type:</label>
+
+            <select id="role-select" v-model="selectedEventTypeFilter">
+                <option v-for="option in eventtypeFilterOptions" :key="option.value" :value="option.value">
+                    {{ option.label }}
+                </option>
+            </select>
+            {{ selectedEventTypeFilter }}
+        </div>
+    </div>
     <div class="table-wrapper">
         <p v-if="eventsLoading">Events Loading ...</p>
         <table v-if="eventsLoading == false">
@@ -11,10 +23,10 @@
                 </tr>
             </thead>
             <tbody>
-                <tr v-for="event in eventsList" :key="event.id">
-                    <td>{{ event.id }}</td>
+                <tr v-for="event in filteredEvents" :key="event.id">
                     <td>{{ event.name }}</td>
-                    <td>{{ event.StartDate }}</td>
+                    <td>{{ event.year }}</td>
+                    <td>{{ formatDate(event.startDate!) }}</td>
                     <td>{{ event.type }}</td>
                 </tr>
             </tbody>
@@ -46,6 +58,47 @@ async function fetchEvents() {
         eventsLoading.value = false;
     }
 }
+
+function formatDate(dateString: string, locale: string = 'de-DE'): string {
+    let date: Date;
+    if (typeof (dateString) !== 'string') {
+        return '';
+    }
+    date = new Date(dateString);
+
+    return new Intl.DateTimeFormat(locale, {
+        year: 'numeric',
+        month: 'short',
+        day: 'numeric',
+    }).format(date);
+}
+
+const selectedEventTypeFilter = ref<EventTypeEnum | ''>('')
+
+const eventtypeFilterOptions = computed(() => {
+    const all = { label: `_`, value: '' }
+    const items = Object.keys(EventTypeEnum)
+        .filter(key => isNaN(Number(key)))
+        .map(key => ({
+            label: key,
+            value: EventTypeEnum[key as keyof typeof EventTypeEnum]
+        }))
+
+    return [all, ...items]
+})
+
+const filteredEvents = computed(() => {
+    if (!selectedEventTypeFilter.value) {
+        return eventsList.value;
+    }
+
+    console.log(eventsList.value[0]!.type);
+    console.log(Number(eventsList.value[0]!.type));
+    console.log(selectedEventTypeFilter.value);
+
+    return eventsList.value
+        .filter(e => e.type == selectedEventTypeFilter.value);
+})
 </script>
 
 <style lang="scss" scoped>
