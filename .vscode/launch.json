@@ -6,7 +6,7 @@
       "type": "coreclr",
       "request": "launch",
       "preLaunchTask": "build",
-      "program": "${workspaceFolder}/src/ADITUS.CodeChallenge.API/bin/Debug/net6.0/ADITUS.CodeChallenge.API.dll",
+      "program": "${workspaceFolder}/src/ADITUS.CodeChallenge.API/bin/Debug/net10.0/ADITUS.CodeChallenge.API.dll",
       "args": [],
       "cwd": "${workspaceFolder}/src/ADITUS.CodeChallenge.API",
       "stopAtEntry": false,

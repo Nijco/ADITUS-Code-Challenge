@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 using ADITUS.CodeChallenge.API.Services;
-using static ADITUS.CodeChallenge.API.Services.ExternalEventSource;
+using static ADITUS.CodeChallenge.API.Services.ExternalEventStatisticsSource;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -37,7 +37,7 @@ void RegisterExternalEventSource(WebApplicationBuilder builder)
     var externalApiConfig = new ExternalEventApiConfig(new Uri(externalEventApiUrlString), externalEventApiOnlineSubRoute, externalEventApiOnSiteSubRoute);
     builder.Services.AddSingleton(externalApiConfig);
     //Inject a httpclient for the configured address into ExternalEventSource into
-    builder.Services.AddHttpClient<IExternalEventSource, ExternalEventSource>(client =>
+    builder.Services.AddHttpClient<IExternalEventStatisticsSource, ExternalEventStatisticsSource>(client =>
     {
         client.BaseAddress = externalApiConfig.BaseUrl;
         client.DefaultRequestHeaders.Add("Accept", "application/json");

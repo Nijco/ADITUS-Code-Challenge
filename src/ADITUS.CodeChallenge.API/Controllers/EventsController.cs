@@ -1,37 +1,54 @@
+using ADITUS.CodeChallenge.API.Domain;
 using ADITUS.CodeChallenge.API.Services;
 using Microsoft.AspNetCore.Mvc;
 
-namespace ADITUS.CodeChallenge.API
+namespace ADITUS.CodeChallenge.API;
+
+[Route("events")]
+public class EventsController : ControllerBase
 {
-  [Route("events")]
-  public class EventsController : ControllerBase
+  private readonly IEventService _eventService;
+
+  public EventsController(IEventService eventService)
   {
-    private readonly IEventService _eventService;
+    _eventService = eventService;
+  }
 
-    public EventsController(IEventService eventService)
+  [HttpGet]
+  [Route("")]
+  public async Task<IActionResult> GetEvents()
+  {
+    var events = await _eventService.GetEvents();
+    return Ok(events);
+  }
+
+  [HttpGet]
+  [Route("{id}")]
+  public async Task<IActionResult> GetEvent(Guid id)
+  {
+    var @event = await _eventService.GetEvent(id);
+    if (@event == null)
     {
-      _eventService = eventService;
+      return NotFound();
     }
 
-    [HttpGet]
-    [Route("")]
-    public async Task<IActionResult> GetEvents()
+    return Ok(@event);
+  }
+
+  [HttpGet]
+  [Route("Statistics/{eventType}/{id}")]
+  public async Task<IActionResult> Statistics(Guid id, EventType eventType)
+  {
+    if (id.Version == 0)
     {
-      var events = await _eventService.GetEvents();
-      return Ok(events);
+      return BadRequest(new { ErrorMessage = "Id is not a valid Guid" });
+    }
+    var @event = await _eventService.GetEventStatistics(id, eventType);
+    if (@event == null)
+    {
+      return NotFound();
     }
 
-    [HttpGet]
-    [Route("{id}")]
-    public async Task<IActionResult> GetEvent(Guid id)
-    {
-      var @event = await _eventService.GetEvent(id);
-      if (@event == null)
-      {
-        return NotFound();
-      }
-
-      return Ok(@event);
-    }
+    return Ok(@event);
   }
 }

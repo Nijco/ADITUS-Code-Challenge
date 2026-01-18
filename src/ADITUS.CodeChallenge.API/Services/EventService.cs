@@ -1,13 +1,16 @@
 using ADITUS.CodeChallenge.API.Domain;
+using ADITUS.CodeChallenge.API.Dtos;
 
 namespace ADITUS.CodeChallenge.API.Services
 {
   public class EventService : IEventService
   {
     private readonly IList<Event> _events;
+    private readonly IExternalEventStatisticsSource _externalEventSource;
 
-    public EventService()
+    public EventService(IExternalEventStatisticsSource externalEventSource)
     {
+      _externalEventSource = externalEventSource;
       _events = new List<Event>
       {
         new Event
@@ -58,7 +61,7 @@ namespace ADITUS.CodeChallenge.API.Services
       };
     }
 
-    public Task<Event> GetEvent(Guid id)
+    public Task<Event?> GetEvent(Guid id)
     {
       var @event = _events.FirstOrDefault(e => e.Id == id);
       return Task.FromResult(@event);
@@ -68,5 +71,33 @@ namespace ADITUS.CodeChallenge.API.Services
     {
       return Task.FromResult(_events);
     }
+
+    public async Task<EventStatisticsDto?> GetEventStatistics(Guid id, EventType eventType)
+    {
+      OnSiteEventStatisticsDto? onSiteEvent = null;
+      OnlineEventStatisticsDto? onlineEvent = null;
+      if (eventType == EventType.OnSite || eventType == EventType.Hybrid)
+      {
+        onSiteEvent = await _externalEventSource.GetOnSiteEvent(id);
+        if (onSiteEvent is null) //External API didn't know event, fail request!
+        {
+          return null;
+        }
+      }
+      if (eventType == EventType.Online || eventType == EventType.Hybrid)
+      {
+        onlineEvent = await _externalEventSource.GetOnlineEvent(id);
+        if (onlineEvent is null) //External API didn't know event, fail request!
+        {
+          return null;
+        }
+      }
+      return new EventStatisticsDto()
+      {
+        OnlineEventStatistics = onlineEvent,
+        OnSiteEventStatistics = onSiteEvent,
+      };
+    }
+
   }
 }
