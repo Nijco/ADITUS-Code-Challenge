@@ -9,7 +9,6 @@
                     {{ option.label }}
                 </option>
             </select>
-            {{ selectedEventTypeFilter }}
         </div>
     </div>
     <div class="table-wrapper">
